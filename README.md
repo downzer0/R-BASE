@@ -2,13 +2,15 @@
 
 This experiment creates a cryptographic algorithm for text encryption. It explores non-integer (and ideally less logical) methods to encrypt plain text. It uses rotated words, the dictionary of which differs for each contact. Once the words are rotated, we use a common encrytion algorithm to further protect the dictionary.
 
-Unofficial words like those commonly found in text messages or memes will not be replaced, but will stay in the message as-is. This is intentional and may even make the nonsensical outp[ut even more nonsensical.
+Unofficial words like those commonly found in text messages or memes will not be replaced, but will stay in the message as-is. This is intentional and may even make the nonsensical output even more nonsensical.
 
 ## Installation
 
-You can install it globally with NPM or manually add it to your `PATH`.
+Clone this repository and run one of:
 
-`npm i -g r-base`
+* `npm run generate`
+* `npm run encrypt -- --string <string> --key <keyfile>`
+* `npm run decrypt -- --string <string> --key <keyfile>`
 
 ## Basic example
 
