@@ -4,6 +4,8 @@ This experiment creates a cryptographic algorithm for text encryption. It explor
 
 Unofficial words like those commonly found in text messages or memes will not be replaced, but will stay in the message as-is. This is intentional and may even make the nonsensical output even more nonsensical.
 
+__It is still in progress.__
+
 ## Installation
 
 Clone this repository and run one of:
