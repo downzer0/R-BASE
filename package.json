@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "generate": "node ./generate.js",
-    "encrypt": "node ./encrypt.js"
+    "encrypt": "node ./encrypt.js",
+    "decrypt": "node ./decrypt.js"
   },
   "repository": {
     "type": "git",
