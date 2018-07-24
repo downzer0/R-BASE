@@ -1,7 +1,9 @@
 const inquirer = require('inquirer');
-const crypto = require('crypto');
 const path = require('path');
 const fs = require('fs');
+
+const buildDictionary = require('./libs/buildDictionary');
+const alpha = require('./libs/alphas');
 
 const base = 4096;
 
@@ -15,26 +17,9 @@ const questions = [{
 }, {
   type: 'input',
   name: 'location',
-  message: 'Where do you want to place this keyfile?'
+  message: 'Where do you want to place this keyfile?',
+  default: '.'
 }];
-
-const alpha = {
-  A: 1, B: 2, C: 3, D: 4, E: 5,
-  F: 6, G: 7, H: 8, I: 9, J: 10,
-  K: 11, L: 12, M: 13, N: 14, O: 15,
-  P: 16, Q: 17, R: 18, S: 19, T: 20,
-  U: 21, V: 22, W: 23, X: 24, Y: 25,
-  Z: 26
-};
-
-// build base dictionary
-
-const buildDictionary = () => {
-  return new Promise((resolve, reject) => {
-    const dictionaryFile = fs.readFileSync(path.join('./', 'dictionary/us-en.txt'));
-    resolve(dictionaryFile.toString().split('\n'));
-  });
-};
 
 // words score
 
