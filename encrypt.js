@@ -41,6 +41,7 @@ const shiftText = (keyfile) => {
   return new Promise((resolve, reject) => {
     let encrypted = [];
     string.split(' ').forEach(word => {
+      // TODO: remove and store special characters for append
       encrypted.push(keyfile[word.toUpperCase()].toLowerCase());
     });
     resolve(encrypted.join(' '));

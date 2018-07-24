@@ -26,9 +26,12 @@ const questions = [{
 const buildWordsScore = (words) => {
   return new Promise((resolve, reject) => {
     let score = 0;
-    const wordsArr = words.trim().split('').forEach(letter => {
-      resolve(score = score + alpha[letter.toUpperCase()]);
+    words.replace(/\s/g, '').split('').forEach(letter => {
+      if (alpha[letter.toUpperCase()]) {
+        score = score + alpha[letter.toUpperCase()];
+      }
     });
+    resolve(score);
   });
 };
 
