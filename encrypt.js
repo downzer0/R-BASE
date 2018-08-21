@@ -1,4 +1,5 @@
 const buildDictionary = require('./libs/buildDictionary');
+const path = require('path');
 const fs = require('fs');
 
 let key, string;
@@ -26,7 +27,7 @@ const processArgs = () => {
 
 const openKeyfile = () => {
   return new Promise((resolve, reject) => {
-    fs.readFile(key, (err, keyfile) => {
+    fs.readFile(path.resolve(key), (err, keyfile) => {
       if (err) {
         reject(err);
       }
@@ -41,8 +42,11 @@ const shiftText = (keyfile) => {
   return new Promise((resolve, reject) => {
     let encrypted = [];
     string.split(' ').forEach(word => {
-      // TODO: remove and store special characters for append
-      encrypted.push(keyfile[word.toUpperCase()].toLowerCase());
+      if (keyfile[word.toUpperCase()]) {
+        encrypted.push(keyfile[word.toUpperCase()].toLowerCase());
+      } else {
+        encrypted.push(word.toLowerCase());
+      }
     });
     resolve(encrypted.join(' '));
   });

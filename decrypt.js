@@ -1,4 +1,5 @@
 const buildDictionary = require('./libs/buildDictionary');
+const path = require('path');
 const fs = require('fs');
 
 let key, string;
@@ -26,7 +27,7 @@ const processArgs = () => {
 
 const openKeyfile = () => {
   return new Promise((resolve, reject) => {
-    fs.readFile(key, (err, keyfile) => {
+    fs.readFile(path.resolve(key), (err, keyfile) => {
       if (err) {
         reject(err);
       }
@@ -39,15 +40,17 @@ const openKeyfile = () => {
 
 const unshiftText = (keyfile) => {
   return new Promise((resolve, reject) => {
-    let decrypted = [];
+    const decrypted = [];
     string.split(' ').forEach(word => {
-      for (let prop in keyfile) {
+      for (const prop in keyfile) {
         if (keyfile.hasOwnProperty(prop)) {
           if (keyfile[prop] === word.toUpperCase()) {
             decrypted.push(prop.toLowerCase());
+            return;
           }
         }
       }
+      decrypted.push(word.toLowerCase());
     });
     resolve(decrypted.join(' '));
   });

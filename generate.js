@@ -9,6 +9,10 @@ const base = 4096;
 
 const questions = [{
   type: 'input',
+  name: 'recipient',
+  message: 'Who is this message to?'
+}, {
+  type: 'input',
   name: 'words',
   message: 'Enter three or more words about the recipient',
   validate: (input) => {
@@ -61,16 +65,28 @@ const buildShiftedDictionary = (score, dictionary) => {
         start = 0;
       }
       algorithm[dictionary[i]] = dictionary[start];
+      i++;
     }
     resolve(algorithm);
   });
+};
+
+// clean the keyfile name
+
+const cleanKeyfile = (words) => {
+  const keyfile = [];
+  words.split(' ').forEach(word => {
+    keyfile.push(word.replace(/[&\/\\#,+()$~%.'":*?!<>{}]/g, '').toLowerCase());
+  });
+  return keyfile.join('-');
 };
 
 // write the keyfile
 
 const writeKeyfile = (shiftedDict, answers) => {
   return new Promise((resolve, reject) => {
-    fs.writeFile(path.join('./', `rbase-${answers.words.split(' ').join('-')}.key`), JSON.stringify(shiftedDict), (err) => {
+    const keyfile = cleanKeyfile(answers.recipient);
+    fs.writeFile(path.join(answers.location, `rbase-${keyfile}.key`), JSON.stringify(shiftedDict), (err) => {
       if (err) {
         reject(err);
       }
@@ -87,5 +103,5 @@ inquirer.prompt(questions).then(async (answers) => {
   const shiftAmount = await shift(score);
   const shiftedDictionary = await buildShiftedDictionary(shiftAmount, dictionary);
   await writeKeyfile(shiftedDictionary, answers);
-  console.log('! Keyfile generated.');
+  console.log(`! Keyfile generated with complexity rating of ${score}`);
 });
