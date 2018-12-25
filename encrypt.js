@@ -1,4 +1,3 @@
-const buildDictionary = require('./libs/buildDictionary');
 const path = require('path');
 const fs = require('fs');
 
