@@ -103,5 +103,5 @@ inquirer.prompt(questions).then(async (answers) => {
   const shiftAmount = await shift(score);
   const shiftedDictionary = await buildShiftedDictionary(shiftAmount, dictionary);
   await writeKeyfile(shiftedDictionary, answers);
-  console.log(`! Keyfile generated with complexity rating of ${score}`);
+  console.log(`! Keyfile generated with complexity rating of ${score} at "rbase-${keyfile}.key"`);
 });
