@@ -11,17 +11,29 @@ __It is still in progress.__
 Clone this repository and run one of:
 
 * `npm run generate`
-* `npm run encrypt -- --string <string> --key <keyfile>`
-* `npm run decrypt -- --string <string> --key <keyfile>`
+* `npm run encrypt -- --string=<string> --key=<keyfile>`
+* `npm run decrypt -- --string=<string> --key=<keyfile>`
 
 ## Basic example
 
+### Encrypting
+
 ```
-Hello, world.
+npm run encrypt -- --string="Hello, world." --key=mykey.key
 ```
 
 ```
 Smorgasboard, zebra.
+```
+
+### Decrypting
+
+```
+npm run decrypt -- --string="smorgasboard, zebra." --key=mykey.key
+```
+
+```
+hello, world.
 ```
 
 ## Upsides

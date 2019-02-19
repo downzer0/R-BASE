@@ -1,8 +1,7 @@
 {
   "name": "r-base",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fun, experimental encryption algorithm.",
-  "main": "index.js",
   "scripts": {
     "generate": "node ./generate.js",
     "encrypt": "node ./encrypt.js",
